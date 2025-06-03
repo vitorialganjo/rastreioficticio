@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreamento de Produto</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 450px;
+      background: white;
+      margin: 80px auto;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+    h2 {
+      color: #00796b;
+    }
+    input[type="text"] {
+      padding: 0.6rem;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background-color: #00796b;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    #status {
+      margin-top: 2rem;
+      text-align: left;
+    }
+    .pedido-info {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    }
+    .pedido-info img {
+      max-width: 100px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔍 Rastreamento de Pedido</h2>
+    <input type="text" id="codigo" placeholder="Digite o código de rastreio">
+    <br>
+    <button onclick="rastrear()">Rastrear</button>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    function rastrear() {
+      const codigo = document.getElementById('codigo').value.trim();
+      const statusEl = document.getElementById('status');
+
+      let pedido = null;
+
+      if (codigo === '12345') {
+        pedido = {
+          nome: 'Samsung Galaxy S23 Ultra',
+          status: 'Saiu para entrega 📦',
+          entrega: 'Previsão: 03/06/2025'
+        };
+      } else if (codigo === '66613') {
+        pedido = {
+          nome: 'CONSOLO JOSE EDUARDO',
+          status: 'A caminho do destino 🚚',
+          entrega: 'Previsão: 05/06/2025',
+          gif: 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
+        };
+      } else if (codigo === '66620') {
+        pedido = {
+          nome: 'TE AMO AMOR CASA COMIGO',
+          status: 'Pedido embalado com amor ❤️',
+          entrega: 'Previsão: 06/06/2025',
+          gif: 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
+        };
+      } else if (codigo === '66618') {
+        pedido = {
+          nome: 'Che Guevara Tamanho Real',
+          status: 'Revolucionando a rota de entrega 🧭',
+          entrega: 'Previsão: 04/06/2025',
+          gif: 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
+        };
+      }
+
+      if (pedido) {
+        statusEl.innerHTML = `
+          <div class="pedido-info">
+            <p><strong>Produto:</strong> ${pedido.nome}</p>
+            <p><strong>Status:</strong> ${pedido.status}</p>
+            <p><strong>${pedido.entrega}</strong></p>
+            ${pedido.gif ? `<img src="${pedido.gif}" alt="Gif bonitinho">` : ''}
+          </div>
+        `;
+      } else {
+        statusEl.innerHTML = '<p style="color:red;">Código não encontrado. ❌</p>';
+      }
+    }
+  </script>
+</body>
+</html>
